@@ -6,6 +6,7 @@ ZEROHOUR is a modern, highly customizable web-based clock and productivity timer
 
 * **Multiple Clock Faces:** Choose from a variety of aesthetically pleasing clock designs including Digital, Analog, Flip, Wavy, Orbital, Binary, and more.
 * **Focus Timer:** Built-in Pomodoro-style timer with presets (Focus, Short Break, Long Break) and a Stopwatch mode to track your productivity.
+* **Traffic Analytics:** Integrated with Google Analytics to monitor visitor metrics, page views, and user engagement.
 * **Remembers your last face:** Picks up where you left off via localStorage.
 * **Custom Theming:** * Choose from multiple accent colors.
   * Select from light and dark background presets.
