@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent:       #f97316;
+  --accent-rgb:   249,115,22;
+  --bg:           #0a0a0a;
+  --card:         #111111;
+  --border:       #1f1f1f;
+  --text-primary: #f0ede6;
+  --text-muted:   #555;
+  --text-faint:   #333;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+:fullscreen, ::backdrop { background: var(--bg); }
+
+.font-display { font-family: 'Bebas Neue', cursive; letter-spacing: 0.05em; }
+.font-mono    { font-family: 'Space Mono', monospace; }
+
+.hand {
+  transform-origin: bottom center;
+  transition: transform 0.5s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.wave-char { display: inline-block; animation: wave 1.5s ease-in-out infinite; }
+
+@keyframes orb-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%       { transform: scale(1.06); opacity: 1; }
+}
+@keyframes orb-rotate     { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+@keyframes orb-rotate-rev { from { transform: rotate(0deg); }   to { transform: rotate(-360deg); } }
+.orb-pulse  { animation: orb-pulse 3s ease-in-out infinite; }
+.orb-ring-1 { animation: orb-rotate 8s linear infinite; }
+.orb-ring-2 { animation: orb-rotate-rev 12s linear infinite; }
+.orb-ring-3 { animation: orb-rotate 20s linear infinite; }
+
+@keyframes star-fall {
+  0%   { transform: translateY(-10px) translateX(0px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(100vh) translateX(-60px); opacity: 0; }
+}
+.star { animation: star-fall linear infinite; }
+
+.face-card { transition: all 0.25s ease; }
+.face-card:hover { transform: translateY(-4px); }
+
+.fs-btn { transition: all 0.2s ease; }
+.fs-btn:hover { transform: scale(1.08); }
+
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
