@@ -93,7 +93,9 @@ export default function Home({ face = "digital" }) {
   return (
     <div
       ref={clockRef}
-      className="flex flex-col h-screen overflow-hidden relative"
+      className={`flex flex-col h-screen overflow-hidden relative ${
+        bgKey === "custom" && customBgUrl ? "custom-image-active" : ""
+      }`}
       style={{
         background:
           bgKey === "custom" && customBgUrl
@@ -135,7 +137,7 @@ export default function Home({ face = "digital" }) {
               e.currentTarget.style.borderColor = "var(--border)";
               e.currentTarget.style.color = "var(--text-muted)";
             }}
-            className="!px-2 sm:!px-[14px] !justify-center" // Adjust padding for mobile icons
+            className="!px-2 sm:!px-[14px] !justify-center"
           >
             <svg
               width="13"
@@ -163,7 +165,7 @@ export default function Home({ face = "digital" }) {
               e.currentTarget.style.borderColor = "var(--border)";
               e.currentTarget.style.color = "var(--text-muted)";
             }}
-            className="!px-2 sm:!px-[14px] !justify-center" // Adjust padding for mobile icons
+            className="!px-2 sm:!px-[14px] !justify-center"
           >
             <div
               className="flex-shrink-0"

@@ -66,3 +66,18 @@ body {
 ::-webkit-scrollbar       { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+.custom-image-active {
+  --text-muted: rgba(255, 255, 255, 0.9) !important;
+  --text-primary: #ffffff !important;
+}
+
+.custom-image-active p,
+.custom-image-active span {
+  text-shadow: 0 2px 10px rgba(43, 43, 43, 0.61), 0 0 6px rgba(43, 43, 43, 0.61) !important;
+}
+
+.custom-image-active button,
+.custom-image-active button span {
+  text-shadow: none !important;
+}

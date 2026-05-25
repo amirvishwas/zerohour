@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { useTime } from "../hooks/useTime";
 import { useTheme } from "../context/ThemeContext";
 
-const CARD_W = "clamp(70px,12vw,140px)";
-const CARD_H = "clamp(100px,18vw,200px)";
-const FONT_SZ = "clamp(80px,15vw,180px)";
+const CARD_W = "clamp(42px, 9vw, 145px)";
+const CARD_H = "clamp(60px, 13vw, 210px)";
+const FONT_SZ = "clamp(46px, 11vw, 190px)";
 
 function FlipCard({ digit, prevDigit }) {
   const { bg } = useTheme();
@@ -112,11 +112,13 @@ function FlipGroup({ value }) {
   const digits = String(value).padStart(2, "0").split("");
   const prevRef = useRef([...digits]);
   const prev = [...prevRef.current];
+
   useEffect(() => {
     prevRef.current = [...digits];
   }, [value]);
+
   return (
-    <div style={{ display: "flex", gap: 6 }}>
+    <div style={{ display: "flex", gap: "clamp(3px, 0.6vw, 8px)" }}>
       <FlipCard digit={digits[0]} prevDigit={prev[0]} />
       <FlipCard digit={digits[1]} prevDigit={prev[1]} />
     </div>
@@ -126,17 +128,20 @@ function FlipGroup({ value }) {
 function Colon() {
   const { accent } = useTheme();
   const [on, setOn] = useState(true);
+
   useEffect(() => {
     const id = setInterval(() => setOn((v) => !v), 1000);
     return () => clearInterval(id);
   }, []);
-  const dot = "clamp(8px,1.5vw,14px)";
+
+  const dot = "clamp(5px, 1.2vw, 16px)";
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: 12,
+        gap: "clamp(8px, 1.8vw, 16px)",
         alignItems: "center",
         justifyContent: "center",
         height: CARD_H,
@@ -170,15 +175,22 @@ function Colon() {
 export default function FlipClock() {
   const { hours12, m, s, ampm, dayName, month, date } = useTime();
   const { accent } = useTheme();
+
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full select-none gap-8">
+    <div className="flex flex-col items-center justify-center w-full h-full select-none gap-6 sm:gap-8 px-2">
       <p
-        className="font-mono text-sm tracking-[0.4em] uppercase"
+        className="font-mono text-xs sm:text-sm tracking-[0.2em] sm:text-[0.4em] uppercase text-center"
         style={{ color: "var(--text-muted)" }}
       >
         {dayName} · {month} {date}
       </p>
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "clamp(6px, 1.2vw, 16px)",
+        }}
+      >
         <FlipGroup value={hours12} />
         <Colon />
         <FlipGroup value={m} />
@@ -186,7 +198,7 @@ export default function FlipClock() {
         <FlipGroup value={s} />
       </div>
       <span
-        className="font-display text-3xl tracking-widest"
+        className="font-display text-2xl sm:text-4xl tracking-widest"
         style={{ color: accent.primary }}
       >
         {ampm}
