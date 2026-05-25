@@ -109,7 +109,7 @@ export default function Home({ face = "digital" }) {
       )}
 
       <header
-        className="flex items-center justify-between px-6 py-4 flex-shrink-0 relative z-10"
+        className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 flex-shrink-0 relative z-10"
         style={{
           opacity: isFS ? 0 : 1,
           pointerEvents: isFS ? "none" : "auto",
@@ -117,12 +117,13 @@ export default function Home({ face = "digital" }) {
         }}
       >
         <span
-          className="font-display text-2xl tracking-widest"
+          className="font-display text-xl sm:text-2xl tracking-widest"
           style={{ color: "var(--text-primary)" }}
         >
           ZERO<span style={{ color: accent.primary }}>HOUR</span>
         </span>
-        <div className="flex items-center gap-2">
+
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             style={btnBase}
             onClick={() => navigate("/focus")}
@@ -134,6 +135,7 @@ export default function Home({ face = "digital" }) {
               e.currentTarget.style.borderColor = "var(--border)";
               e.currentTarget.style.color = "var(--text-muted)";
             }}
+            className="!px-2 sm:!px-[14px] !justify-center" // Adjust padding for mobile icons
           >
             <svg
               width="13"
@@ -142,12 +144,14 @@ export default function Home({ face = "digital" }) {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
+              className="flex-shrink-0"
             >
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
-            Focus
+            <span className="hidden sm:inline">Focus</span>
           </button>
+
           <button
             style={btnBase}
             onClick={() => setThemeOpen(true)}
@@ -159,8 +163,10 @@ export default function Home({ face = "digital" }) {
               e.currentTarget.style.borderColor = "var(--border)";
               e.currentTarget.style.color = "var(--text-muted)";
             }}
+            className="!px-2 sm:!px-[14px] !justify-center" // Adjust padding for mobile icons
           >
             <div
+              className="flex-shrink-0"
               style={{
                 width: 10,
                 height: 10,
@@ -168,8 +174,9 @@ export default function Home({ face = "digital" }) {
                 background: accent.primary,
               }}
             />
-            Theme
+            <span className="hidden sm:inline">Theme</span>
           </button>
+
           <FullscreenButton targetRef={clockRef} />
         </div>
       </header>
