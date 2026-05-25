@@ -13,6 +13,8 @@ export default function ThemePanel({ open, onClose }) {
   } = useTheme();
   const fileInputRef = useRef(null);
   const [customImage, setCustomImage] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const toastTimeout = useRef(null);
 
   useEffect(() => {
     const stored = localStorage.getItem("zeroclock_custom_bg");
@@ -87,6 +89,10 @@ export default function ThemePanel({ open, onClose }) {
           };
         }
         setBgKey("custom");
+
+        setShowToast(true);
+        if (toastTimeout.current) clearTimeout(toastTimeout.current);
+        toastTimeout.current = setTimeout(() => setShowToast(false), 2000);
       };
       img.src = event.target.result;
     };
@@ -523,6 +529,34 @@ export default function ThemePanel({ open, onClose }) {
           </div>
         </div>
       </div>
+
+      {showToast && (
+        <div
+          className="fixed bottom-6 right-6 z-[60] px-4 py-3 rounded-lg flex items-center gap-2 shadow-lg transition-opacity duration-300"
+          style={{
+            background: "var(--card)",
+            border: `1px solid ${accent.primary}`,
+            color: "var(--text-primary)",
+            fontFamily: "'Space Mono',monospace",
+            fontSize: 11,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+          }}
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke={accent.primary}
+            strokeWidth="2"
+          >
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+          </svg>
+          Refresh the site
+        </div>
+      )}
     </>
   );
 }
