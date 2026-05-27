@@ -11,6 +11,7 @@ import MinimalClock from "../components/MinimalClock";
 import BinaryClock from "../components/BinaryClock";
 import FlipClock from "../components/FlipClock";
 import OrbClock from "../components/OrbClock";
+import PlasmaRingClock from "../components/PlasmaRingClock";
 
 const FACES = {
   digital: DigitalClock,
@@ -21,6 +22,7 @@ const FACES = {
   binary: BinaryClock,
   flip: FlipClock,
   orb: OrbClock,
+  plasma: PlasmaRingClock,
 };
 
 export default function Home({ face = "digital" }) {

@@ -334,6 +334,97 @@ function OrbPreview() {
   );
 }
 
+function PlasmaPreview() {
+  const { h, m, s } = useTime();
+  const { accent } = useTheme();
+
+  const cHour = 2 * Math.PI * 38;
+  const cMin = 2 * Math.PI * 29;
+  const cSec = 2 * Math.PI * 21;
+
+  const hPct = (h % 12) / 12;
+  const mPct = m / 60;
+  const sPct = s / 60;
+
+  return (
+    <div className="flex items-center justify-center h-full">
+      <div
+        className="relative flex items-center justify-center"
+        style={{ width: 80, height: 80 }}
+      >
+        <svg
+          className="absolute inset-0 w-full h-full"
+          viewBox="0 0 100 100"
+          style={{ transform: "rotate(-90deg)" }}
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="38"
+            fill="none"
+            stroke="var(--border)"
+            strokeWidth="4.8"
+            opacity="0.3"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="29"
+            fill="none"
+            stroke="var(--border)"
+            strokeWidth="3.6"
+            opacity="0.3"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="21"
+            fill="none"
+            stroke="var(--border)"
+            strokeWidth="2.6"
+            opacity="0.3"
+          />
+
+          <circle
+            cx="50"
+            cy="50"
+            r="38"
+            fill="none"
+            stroke={accent.primary}
+            strokeWidth="4.8"
+            strokeLinecap="round"
+            strokeDasharray={`${hPct * cHour} ${cHour}`}
+            style={{ filter: `drop-shadow(0 0 2px ${accent.primary})` }}
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="29"
+            fill="none"
+            stroke={accent.primary}
+            strokeWidth="3.6"
+            strokeLinecap="round"
+            strokeDasharray={`${mPct * cMin} ${cMin}`}
+            opacity="0.8"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="21"
+            fill="none"
+            stroke={accent.primary}
+            strokeWidth="2.6"
+            strokeLinecap="round"
+            strokeDasharray={`${sPct * cSec} ${cSec}`}
+            opacity="0.6"
+            style={{ transition: "stroke-dasharray 0.15s ease" }}
+          />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 const FACES = [
   {
     id: "digital",
@@ -346,6 +437,12 @@ const FACES = [
     label: "Analog",
     desc: "Classic dial with hands",
     preview: AnalogPreview,
+  },
+  {
+    id: "plasma",
+    label: "Plasma",
+    desc: "Glowing kinetic rings",
+    preview: PlasmaPreview,
   },
   {
     id: "flip",
